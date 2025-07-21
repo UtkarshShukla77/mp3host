@@ -99,7 +99,7 @@
     <img src="https://lh3.googleusercontent.com/pw/AP1GczPhBgxGVfK1E8KmMox_4PenIQI3G82WxeoiwQEgp6vWX86XL3pKo3aeRCQnLud7CSLc_I-o1zteLK_EEkwYn0LNu0wI6J5oimmZaZkRQVkzhTmYoeQbCt9E1na57y-CpWWmAdJTq_EfODnf5Kch64vM=w738-h983-s-no-gm?authuser=0" alt="Image 3">
 	
  
- <audio id="bg-audio" loop>
+<audio id="bg-audio" loop>
   <source src="https://raw.githubusercontent.com/UtkarshShukla77/mp3host/main/audio.mp3" type="audio/mpeg">
 </audio>
 <script>
@@ -117,18 +117,20 @@
 
   const audioElement = document.getElementById("bg-audio");
 
-  // Only start audio after user interacts with the page
   const startMusic = () => {
     audioElement.play().then(() => {
       console.log("🎵 Music started!");
+      window.removeEventListener("scroll", startMusic);
+      document.body.removeEventListener("click", startMusic);
     }).catch(err => {
       console.warn("Autoplay blocked:", err);
     });
-    document.body.removeEventListener("scroll", startMusic);
   };
 
-  document.body.addEventListener("scroll", startMusic);
+  window.addEventListener("scroll", startMusic);
+  document.body.addEventListener("click", startMusic);
 </script>
+
 
 </body>
 </html>
